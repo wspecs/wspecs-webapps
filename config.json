@@ -1,0 +1,14 @@
+{
+  "title": "Sample Application",
+  "description": "Sample Application",
+  "col": "webapp",
+  "path": "",
+  "port": 3004,
+  "dev": {
+    "url": "http://servone.wspecs.com"
+  },
+  "prod": {
+    "url": "https://apps.wspecs.com"
+  },
+  "image": "sample"
+}

@@ -1,0 +1,16 @@
+<section class="results">
+  <h2 class="fit-heading">Search Result</h2>
+  <% if (songs.length) { %>
+    <p class="search-detail">Voici les meilleurs <strong><%- songs.length %></strong> resultats pour votre recherche &laquo;<em><%- query %></em>&raquo;</p>
+
+    <ul class="alt index">
+      <% for (const song of songs) { %>
+      <li>
+        <% include partial/song-info %>
+      </li>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <p class="search-detail">Aucun résultat pour votre recherche &laquo;<em><%- query %></em>&raquo;</p>
+  <% } %>
+</section>

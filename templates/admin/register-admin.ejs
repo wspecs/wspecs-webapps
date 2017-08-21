@@ -1,0 +1,69 @@
+<html lang="en">
+<head>
+  <% include partial/admin_base_head %>
+<head>
+
+<body class="app flex-row align-items-center">
+   <div class="container">
+     <div class="row justify-content-center">
+       <div class="col-md-6">
+         <div class="card mx-4">
+           <div class="card-block p-4 register-form">
+             <h1>Register</h1>
+             <p class="text-muted">Create your account</p>
+             <div class="input-group mb-3">
+                 <span class="input-group-addon"><i class="icon-user"></i>
+                 </span>
+                 <input type="text" data-key="first" class="form-control" placeholder="First">
+             </div>
+
+             <div class="input-group mb-3">
+                 <span class="input-group-addon"><i class="icon-user"></i>
+                 </span>
+                 <input type="text" data-key="last" class="form-control" placeholder="Last">
+             </div>
+
+             <div class="input-group mb-3">
+                 <span class="input-group-addon"><i class="icon-user"></i>
+                 </span>
+                 <input type="text" data-key="username" class="form-control" placeholder="Username">
+             </div>
+
+             <div class="input-group mb-3">
+                 <span class="input-group-addon">@</span>
+                 <input type="text" data-key="email" class="form-control" placeholder="Email">
+             </div>
+
+             <div class="input-group mb-3">
+                 <span class="input-group-addon"><i class="icon-lock"></i>
+                 </span>
+                 <input type="password" data-key="password" class="form-control" placeholder="Password" sensitive>
+             </div>
+
+             <div class="input-group mb-4">
+                 <span class="input-group-addon"><i class="icon-lock"></i>
+                 </span>
+                 <input type="password" data-key="passwordRepeat" class="form-control" placeholder="Repeat password" sensitive>
+             </div>
+
+             <button type="button" class="btn btn-block btn-success">Create Account</button>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+   <% include partial/admin_bundle_script %>
+   <script>
+     $('.register-form button').click(() => {
+       const form = $.getFormValues('.register-form input');
+       $.post('/admin/register', form)
+         .done(() => window.location.href = '<%- base %>admin')
+         .fail(() => toastr.error('Failed'));
+     });
+   </script>
+
+</body>
+</html>

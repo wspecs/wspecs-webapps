@@ -1,0 +1,10 @@
+<section class="results">
+  <h2><%- categoryInfo.title %><%- categoryInfo.subTitle ? ' - ' + categoryInfo.subTitle : '' %></h2>
+  <ul class="alt index">
+    <% for (const song of indexes) { %>
+    <li>
+      <% include partial/song-info %>
+    </li>
+    <% } %>
+  </ul>
+</section>

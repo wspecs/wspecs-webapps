@@ -1,0 +1,106 @@
+<html>
+<head>
+  <% include partial/base_head %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/reveal.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/css/theme/simple.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+  <style>
+    .reveal .title {
+      color: #1565c0;
+    }
+    .reveal .progress span{
+      background: #1565c0;
+    }
+    .reveal .icons {
+      display: inline-block;
+      margin: 0 18px;
+    }
+    .reveal .icons a:hover {
+      color: #1565c0;
+    }
+    .reveal .icons a {
+      color: #3d4449;
+    }
+    .reveal small {
+      margin-top: 48px;
+      font-size: 30%;
+    }
+    input {
+      padding: 16px;
+      font-size: 24px;
+      text-align: center;
+      border: none;
+      border-bottom: 1px solid black;
+      width: 32%;
+      outline: none;
+    }
+    .fa {
+      font-size: 32px;
+    }
+  </style>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <% if (showSearch) { %>
+        <section>
+          <h6 class="title">SDA Hymnal</h6>
+          <input type="text" placeholder="Enter a number">
+        </section>
+        <% } else { %>
+          <% for (const song of songs) { %>
+          <section>
+            <h5 class="title"><%- song.number %></h5>
+            <h3><%- song.title %></h3>
+            <h6>SDA Hymnal</h6>
+          </section>
+            <% for (const part of song.slides) { %>
+              <% const verse = song.verses[song.parts.indexOf(part)] %>
+              <% const prez = verse.length <= 8 ? [verse] : song.chunk(verse, Math.ceil(verse.length / 2)) %>
+              <% for (let num = 0; num < prez.length; num++) { %>
+                <section>
+                <% if (Number(num) === 0) { %><h6 class="title"><%- part.replace(/_/g, ' ') %></h6><% } %>
+                <% for (const line of prez[num]) { %>
+                  <%- line %><br/>
+                <% } %>
+                </section>
+              <% } %>
+            <% } %>
+          <% } %>
+          <section>
+          <% if (songs[songs.length - 1].prev) { %>
+            <h1 class="icons"><a  href="sdah/presentation/<%- songs[songs.length - 1].prev %>"><i class="fa fa-chevron-left"></a></i></h1>
+          <% } %>
+          <h1 class="icons"><a  href="sdah/presentation"><i class="fa fa-home"></a></i></h1>
+          <h1 class="icons"><a  href="sdah/song/<%- songs[songs.length - 1].number %>"><i class="fa fa-list-ul"></a></i></h1>
+          <% if (songs[songs.length - 1].next) { %>
+            <h1 class="icons"><a  href="sdah/presentation/<%- songs[songs.length - 1].next %>"><i class="fa fa-chevron-right"></a></i></h1>
+          <% } %>
+          <br>
+          <small>SDA Hymnal</small>
+        </section>
+      <% } %>
+      </section>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.5.0/js/reveal.min.js"></script>
+  <script>
+    Reveal.initialize({
+      controls: false,
+      keyboard: true,
+    });
+    const search = document.querySelector('input');
+    if (search) {
+      search.addEventListener('keyup', (e) => {
+        const query = search.value;
+        if (query && e.keyCode === 13) {
+          window.location.href = '<%- base %>sdah/presentation/' + encodeURIComponent(query);
+        }
+      });
+    }
+  </script>
+</body>
+</html>

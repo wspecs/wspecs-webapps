@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <% include partial/base_head %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <% if (isProd) { %>
+  <link rel="stylesheet" href="sdah/css/bundle.min.css?version=<%- version %>"/>
+  <% } else { %>
+    <link rel="stylesheet" href="sdah/css/style.css"/>
+  <% } %>
+</head>
+<body>
+
+  <!-- Wrapper -->
+  <div id="wrapper">
+
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
+        <!-- Header -->
+        <header id="header">
+          <a href="sdah" class="logo">SDA <strong>Hymnal</strong></a>
+          <% if (locals.pageUrl) { %>
+          <ul class="icons">
+            <li>
+              <a href="https://www.facebook.com/sharer/sharer.php?u=<%- pageUrl %>" class="icon fa-facebook">
+                <span class="label">Facebook</span>
+              </a>
+            </li>
+            <li>
+              <a href="http://twitter.com/share?text=HymnesEtLouages<%- title %>&url=<%- pageUrl %>&hashtags=#HymnesEtLouanges,#wspecs" class="icon fa-twitter">
+                <span class="label">Twitter</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://plus.google.com/share?url=<%- pageUrl %>" class="icon fa-google-plus">
+                <span class="label">GooglePlus</span>
+              </a>
+            </li>
+          </ul>
+          <% } %>
+        </header>
+        <%- include(pageContent) %>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+      <div class="inner">
+
+        <!-- Search -->
+        <section id="search" class="alt">
+          <input type="text" name="query" id="query" placeholder="Search" />
+        </section>
+        <% include partial/nav %>
+        <% include partial/footer %>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/skel/3.0.1/skel.min.js"></script>
+  <!--[if lte IE 8]><script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script><![endif]-->
+  <% if (isProd) { %>
+    <script src="sdah/js/bundle.min.js?version=<%- version %>"></script>
+    <% include partial/analytics %>
+  <% } else { %>
+    <script src="sdah/js/utils.js"></script>
+    <script src="sdah/js/main.js"></script>
+    <script src="sdah/js/custom.js"></script>
+  <% } %>
+</body>
+</html>

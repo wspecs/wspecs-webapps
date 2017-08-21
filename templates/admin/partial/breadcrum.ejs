@@ -1,0 +1,14 @@
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Home</li>
+  <% if (page.breadcrums) { %>
+    <% for (const crum of page.breadcrums) { %>
+      <li class="breadcrumb-item <% if (!crum.href) { %>active<% } %>">
+        <% if (crum.href) { %>
+          <a href="<%- base %><%- crum.href %>"><%- crum.title %></a>
+        <% } else { %>
+          <%- crum.title %>
+        <% } %>
+      </li>
+    <% } %>
+  <% } %>
+</ol>

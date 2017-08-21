@@ -1,0 +1,20 @@
+<section class="results">
+  <h2>Table Des Matieres</h2>
+
+  <ul class="pagination">
+    <% for (const index of songIndexes) { %>
+      <li>
+        <a href="hl/<%- pathPrefix %>/<%- index %>" class="page <% if (index === songIndex) { %>active<% } %>">
+          <%- index %>
+        </a>
+      </li>
+    <% } %>
+  </ul>
+  <ul class="alt index">
+    <% for (const song of indexes) { %>
+    <li>
+      <% include partial/song-info %>
+    </li>
+    <% } %>
+  </ul>
+</section>

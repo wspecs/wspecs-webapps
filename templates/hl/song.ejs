@@ -1,0 +1,23 @@
+<section class="song">
+  <h2 class="fit-heading"><strong><%- number %></strong> - <%- title %></h2>
+  <h5><%- category %></h5>
+  <% for (let index = 0; index < verses.length; index++) { %>
+    <% const verse = verses[index]; %>
+    <h3><%- parts[index] %></h3>
+    <p class="lyrics">
+    <% for (const line of verse) { %>
+      <%- line %><br/>
+    <% } %>
+    </p>
+  <% } %>
+
+  <ul class="actions">
+    <% if (prev) { %>
+      <li><a  href="hl/chant/<%- prev %>" class="big icon fa-chevron-left"></a></li>
+    <% } %>
+    <% if (next) { %>
+      <li><a  href="hl/chant/<%- next %>" class="big icon fa-chevron-right"></a></li>
+    <% } %>
+    <li><a  href="hl/presentation/<%- number %>" class="big icon fa-laptop"></a></li>
+  </ul>
+</section>

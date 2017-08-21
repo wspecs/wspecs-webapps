@@ -1,0 +1,16 @@
+<div class="title">
+  <h1><span><%- book.title %></span>Table of Content</h1>
+  <span>Author <i class='fa fa-user'></i> <%- book.author %></span>
+</div>
+
+<div id="content">
+  <ul class=leaders>
+    <% for (const chapter of book.chapters) { %>
+    <li>
+      <a class="linker"  href="threeangels/book/<%- book.code %>/<%- chapter.number %>"><%- chapter.title %><a/>
+       <a  href="threeangels/book/<%- book.code %>/<%- chapter.number %>"><%- chapter.page || chapter.number %></a>
+     </li>
+    <% } %>
+ </ul>
+</div>
+<a id="fab"  href="threeangels/book/<%- book.code %>/<%- chapterIndex %>"><i class="fa fa-newspaper-o"></i></a>
