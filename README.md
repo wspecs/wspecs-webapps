@@ -1,3 +1,6 @@
+File Structure
+
+```
 |--lib
 |  Custom libraries and other code
 |--models
@@ -22,3 +25,4 @@
 |  Project configuration for npm
 |--web.js
 |  Main script that starts your application
+```
