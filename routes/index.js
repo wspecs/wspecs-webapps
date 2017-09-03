@@ -1,6 +1,12 @@
-module.exports = function(app) {
-  app.use('/admin', require('./admin'))
-  app.use('/hl', require('./hl'))
-  app.use('/sdah', require('./sdah')),
-  app.use('/threeangels', require('./threeangels'))
+module.exports = (app) => {
+  const modules = [
+    'admin',
+    'hl',
+    'kjv',
+    'sdah',
+    'threeangels',
+  ];
+  for (const module of modules) {
+    app.use('/' + module, require('./' + module));
+  }
 }

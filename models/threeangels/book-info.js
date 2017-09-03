@@ -36,6 +36,14 @@ let schema = Schema({
     }],
     required: true,
   },
+
+  summary: {
+    preview: [String],
+    tdlr: String,
+    summary: String,
+    tags: [String],
+    color: String,  // Hex Value
+  }
 });
 
 module.exports = mongoose.model(MODEL_NAME, schema);

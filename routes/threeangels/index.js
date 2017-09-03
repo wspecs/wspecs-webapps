@@ -9,6 +9,7 @@ const Cookies = require('cookies');
 
 router.use(rc.RESOLVE);
 router.use(rc.CACHE);
+router.use(rc.SERVE);
 
 /**
  * @param {string} code Book code
@@ -27,7 +28,7 @@ let showError = (res, code, message) => {
   res.cache('threeangels/error', page);
 }
 
-router.use((req, _, next) => {
+router.use((req, res, next) => {
   // Path for caching templates
   req.errorFunction = showError;
   req.serverErrorMessage = 'Something went wrong in the backend';
@@ -36,6 +37,31 @@ router.use((req, _, next) => {
   next();
 });
 
+
+let readPage = (req, res) => {
+  const path = req.cookies.get('read') || '/threeangels/book/DA/1';
+  res.redirect(path);
+};
+router.get('/book/read', readPage);
+
+let booksPage = (req, res) => {
+  return BookInfo.find({}).exec()
+    .then(docs => {
+      const books = docs.filter(x => Boolean(x.summary.summary));
+      const tags = [];
+      for (const book of books) {
+        for (const tag of book.summary.tags) {
+          if (!tags.find(x => x === tag)) {
+            tags.push(tag);
+          }
+        }
+      }
+      tags.sort();
+      res.serve('threeangels/books', {books, tags});
+    }).catch(e => res.send(e));
+};
+// TODO Add decorator
+router.get('/book', booksPage);
 
 let tocPage = (req, res) => {
   return BookInfo.findOne({code: req.params.code.toUpperCase()}).exec()
@@ -63,6 +89,10 @@ let chapterPage = (req, res) => {
     }
     req.cookies.set('chapter', chapter, {
       path: getBookPath(code),
+      httpOnly: true,
+    });
+    req.cookies.set('read', code + '/' + chapter, {
+      path: '/threeangels/book/read',
       httpOnly: true,
     });
     page.chapter = doc.chapters[page.chapterIndex];

@@ -1,9 +1,13 @@
 <div class="title">
-  <h1><span><%- book.title %></span>Table of Content</h1>
+  <h1><span><%- book.title %>
+    </span>Overview</h1>
   <span>Author <i class='fa fa-user'></i> <%- book.author %></span>
 </div>
 
 <div id="content">
+  <h1>Summary</h1>
+  <p><%- book.summary.summary %></p>
+  <h1>Table of Content</h1>
   <ul class=leaders>
     <% for (const chapter of book.chapters) { %>
     <li>
