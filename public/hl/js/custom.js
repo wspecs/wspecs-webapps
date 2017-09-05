@@ -1,4 +1,4 @@
-$('#query').keyup(e => {
+$('#query').keyup(function(e) {
   if(e.keyCode == 13) {
     const query = $(this).val();
     if (query) {
