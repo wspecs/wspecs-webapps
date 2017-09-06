@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+echo "JOB PROD SANITIZE"
 PROD_DIR="/var/www/PROD/webapps"
 
 if [[ $# -eq 0 ]] ; then
@@ -7,8 +8,9 @@ if [[ $# -eq 0 ]] ; then
     exit 1
 fi
 
-if [ ! -d "routes/$1" ]; then
-  echo "Directory routes/$1 does not exist."
+if [ ! -d "typescript/routes/$1" ]; then
+  echo "Directory typescript/routes/$1 does not exist."
+  exit
 fi
 
 duplicate() {
@@ -30,12 +32,12 @@ generate_library() {
 
 
 mkdir -p $PROD_DIR
-for name in config.json lib node_modules package.json README.md web.js
+for name in config.json typescript node_modules package.json README.md index.js tsconfig.json scripts
 do
   duplicate $name
 done
 
-for name in models public templates routes
+for name in public templates
 do
   partial_duplicate $name $1
   for f in $name/*
@@ -44,5 +46,4 @@ do
   done
 done
 
-cp routes/index.js $PROD_DIR/routes
 rm -rf $PROD_DIR/data/cache/$1

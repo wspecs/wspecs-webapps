@@ -1,5 +1,7 @@
 #!/bin/zsh
 
+echo "JOB PROD BUNDLE"
+
 PROD_DIR="/var/www/PROD/webapps"
 
 if [[ $# -eq 0 ]]; then
@@ -7,8 +9,8 @@ if [[ $# -eq 0 ]]; then
     exit 1
 fi
 
-if [ ! -d "routes/$1" ]; then
-  echo "Directory routes/$1 does not exist."
+if [ ! -d "typescript/routes/$1" ]; then
+  echo "Directory typescript/routes/$1 does not exist."
   exit 1
 fi
 

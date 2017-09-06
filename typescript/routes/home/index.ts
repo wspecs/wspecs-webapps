@@ -7,11 +7,11 @@ class HomeRoutes extends BasicRoutes {
   }
 
   home(req, res) {
-    res.send('hello');
+    res.serve(this.basePath + '/home', {});
   }
 
   get() {
-    this.router.get('/', this.home);
+    this.router.get('/', this.home.bind(this));
     return super.get();
   }
 }
