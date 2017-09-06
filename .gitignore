@@ -1,5 +1,8 @@
 # wspecs compiled directories #
 www
+cache
+dest
+dist
 devbranch
 .sass-cache
 .git
