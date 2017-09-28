@@ -101,6 +101,7 @@ updateGit() {
 
 updateGit ./
 updateGit $PUBLIC_DIR
+ws package describe
 
 header 'Done'
 exit 0
