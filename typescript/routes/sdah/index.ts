@@ -5,7 +5,8 @@ import {HymnalRoutes} from './../hymnal'
 
 class SDAHRoutes extends HymnalRoutes {
   constructor() {
-    super('sdah', SDAH, indexes, appDetails);
+    const basePath = 'sdah';
+    super(basePath, SDAH, indexes, appDetails);
   }
 }
 
