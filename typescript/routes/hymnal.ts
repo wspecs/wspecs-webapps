@@ -95,7 +95,7 @@ export class HymnalRoutes extends BasicRoutes {
           pageContent: 'index',
           songIndexes: this.hymnalIndexes.az.map(x => x.key)
         };
-        res.serve(this.basePath + '/layout', page);
+        this.renderLayout(page, res.serve);
     });
   }
 
@@ -116,7 +116,7 @@ export class HymnalRoutes extends BasicRoutes {
           songIndexes: this.hymnalIndexes.numbers.map(x => x.key),
           pageContent: 'index',
         };
-        res.serve(this.basePath + '/layout', page);
+        this.renderLayout(page, res.serve);
     });
   }
 
@@ -138,7 +138,7 @@ export class HymnalRoutes extends BasicRoutes {
           pageContent: 'category',
           songIndexes: this.hymnalIndexes.numbers.map(x => x.key),
         };
-        res.serve(this.basePath + '/layout', page);
+        this.renderLayout(page, res.serve);
     });
   }
 
@@ -164,7 +164,7 @@ export class HymnalRoutes extends BasicRoutes {
           }),
           pageContent: 'results',
         }
-        res.cache(this.basePath + '/layout', page);
+        this.renderLayout(page, res.serve);
       });
   };
 
@@ -172,7 +172,7 @@ export class HymnalRoutes extends BasicRoutes {
     const page = {
       pageContent: 'home',
     };
-    res.serve(this.basePath + '/layout', page);
+    this.renderLayout(page, res.serve);
   };
 
   get() {

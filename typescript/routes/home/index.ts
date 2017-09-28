@@ -16,5 +16,4 @@ class HomeRoutes extends BasicRoutes {
   }
 }
 
-const routes = new HomeRoutes().get();
-export = routes;
+export const routes = new HomeRoutes().get();

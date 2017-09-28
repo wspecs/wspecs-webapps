@@ -118,5 +118,4 @@ class KJVRoutes extends BasicRoutes {
   }
 }
 
-const routes = new KJVRoutes().get();
-export = routes;
+export const routes = new KJVRoutes().get();

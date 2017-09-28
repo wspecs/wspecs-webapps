@@ -9,5 +9,4 @@ class SDAHRoutes extends HymnalRoutes {
   }
 }
 
-const routes = new SDAHRoutes().get();
-export = routes;
+export const routes = new SDAHRoutes().get();

@@ -25,10 +25,14 @@ export class Server {
     //create expressjs application
     this.app = express();
     configureRest(this.app, express);
-    routes(this.app);
+  }
+
+  routeApp() {
+    this.app.use(routes);
   }
 
   start() {
+    this.routeApp();
     this.app.listen(serverConfig.port, function () {
       info('port: %s', serverConfig.port);
       info('url: %s', serverConfig.base);

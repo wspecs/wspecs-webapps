@@ -69,4 +69,4 @@ router.get('/logout', (req, res) => {
 })
 
 // Export routes
-module.exports = router
+module.exports = {routes: router}

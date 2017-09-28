@@ -113,5 +113,4 @@ class ThreeAngels extends BasicRoutes {
   }
 }
 
-const routes = new ThreeAngels().get();
-export = routes;
+export const routes = new ThreeAngels().get();

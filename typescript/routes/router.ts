@@ -9,7 +9,8 @@ const SERVER_ERROR = 'Something went wrong!';
 
 export class BasicRoutes {
 
-  basePath: string;
+  basePath = '';
+  templatePath = '';
   errorMessage: string;
   router: Router;
 
@@ -22,7 +23,10 @@ export class BasicRoutes {
       this.router.use(CACHE);
       this.router.use(SERVE);
       this.router.use((req: AppRequest, res, next) => {
-        req.basePath = '/' + this.basePath;
+        if (this.basePath) {
+          req.basePath = '/' + this.basePath;
+          this.templatePath = this.basePath + '/';
+        }
         req.cookies = new Cookies(req, res);
         req.errorFunction = this.showError;
         req.serverErrorMessage = serverErrorMessage;
@@ -53,7 +57,15 @@ export class BasicRoutes {
     });
   }
 
-  get() {
+  public renderLayout(page, renderFn) {
+    this.renderPage(this.templatePath + 'layout', page, renderFn);
+  }
+
+  public renderPage(path: string, page, renderFn) {
+    renderFn(path, page);
+  }
+
+  public get() {
     this.router.get('*', this.error404.bind(this));
     return this.router;
   }

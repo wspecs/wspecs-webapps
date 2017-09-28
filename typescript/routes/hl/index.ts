@@ -5,9 +5,9 @@ import {HymnalRoutes} from './../hymnal'
 
 class HLRoutes extends HymnalRoutes {
   constructor() {
-    super('hl', HL, indexes, appDetails);
+    const basePath = 'hl';
+    super(basePath, HL, indexes, appDetails);
   }
 }
 
-const routes = new HLRoutes().get();
-export = routes;
+export const routes = new HLRoutes().get();
