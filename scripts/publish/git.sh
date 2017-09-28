@@ -94,4 +94,5 @@ git add .
 git commit -am "auto update $TIMESTAMP"
 git status
 git push
+ls
 exit 0
