@@ -31,7 +31,7 @@ partial_duplicate() {
 }
 
 mkdir -p $PUBLIC_DIR
-for name in config.json package.json index.js tsconfig.json .gitignore
+for name in config.json index.js tsconfig.json .gitignore
 do
   duplicate $name
 done
@@ -100,8 +100,9 @@ updateGit() {
 }
 
 updateGit ./
+cd $PUBLIC_DIR
+ws package describe --text "input"
 updateGit $PUBLIC_DIR
-ws package describe
 
 header 'Done'
 exit 0

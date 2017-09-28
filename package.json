@@ -2,7 +2,7 @@
   "name": "wspecs-apps",
   "version": "1.0.0",
   "description": "Packages for wspecs webapps",
-  "main": "web.js",
+  "main": "index.js",
   "scripts": {
     "bundle": "scripty",
     "sanitize": "scripty",
@@ -13,7 +13,7 @@
     "test": "run(){echo \"Error: no test specified\" && exit 1}"
   },
   "author": "Wendly Saintil",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "rename-css-selectors": "^1.3.2"
   },
