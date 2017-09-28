@@ -90,9 +90,8 @@ TIMESTAMP=$(date +%s)
 cd PUBLIC_DIR
 echo $TIMESTAMP
 
-git add .
+git add -A
 git commit -am "auto update $TIMESTAMP"
 git status
 git push
-ls
 exit 0
