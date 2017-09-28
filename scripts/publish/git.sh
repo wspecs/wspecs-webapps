@@ -87,12 +87,16 @@ sed -i "s|content=\"/$1|content=\"|g" $PUBLIC_DIR/templates/**/*.ejs
 header 'Done'
 
 TIMESTAMP=$(date +%s)
-cd PUBLIC_DIR
-echo $TIMESTAMP
 
-git add -A
-git commit -am "auto update $TIMESTAMP"
-git status
-git push
-ls
+updateGit() {
+  cd $1
+  git add -A
+  git commit -am "auto update $TIMESTAMP"
+  git status
+  git push
+}
+
+updateGit ./
+updateGit $PUBLIC_DIR
+
 exit 0
