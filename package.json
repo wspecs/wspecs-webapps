@@ -9,7 +9,7 @@
     "compile": "scripty",
     "updategit": "scripty",
     "dev": "npm run compile && node index.js --instance dev --nocache --debug",
-    "deploy": "npm run compile && node index.js --instance prod",
+    "prod": "npm run compile && node index.js --instance prod",
     "test": "run(){echo \"Error: no test specified\" && exit 1}"
   },
   "author": "Wendly Saintil",
@@ -31,6 +31,7 @@
     "@types/node": "^8.0.26",
     "@types/password-hash": "^1.2.20",
     "@types/randomstring": "^1.1.6",
+    "bible-passage-reference-parser": "^2.0.1",
     "reflect-metadata": "^0.1.10"
   }
 }

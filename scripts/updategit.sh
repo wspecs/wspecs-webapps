@@ -31,7 +31,7 @@ partial_duplicate() {
 }
 
 mkdir -p $PUBLIC_DIR
-for name in config.json package.json index.js tsconfig.json scripts .gitignore
+for name in config.json package.json index.js tsconfig.json .gitignore
 do
   duplicate $name
 done
@@ -64,6 +64,8 @@ done
 echo 'Copying library files.'
 cp -r typescript/lib $PUBLIC_DIR/typescript/lib
 cp -r typescript/web.ts $PUBLIC_DIR/typescript/
+mkdir -p $PUBLIC_DIR/scripts
+cp scripts/compile.sh $PUBLIC_DIR/scripts/compile.sh
 
 header 'String replacements'
 for name in models lib; do
@@ -84,8 +86,6 @@ sed -i "s|href=\"/$1|href=\"|g" $PUBLIC_DIR/templates/**/*.ejs
 sed -i "s|href=\"/$1|href=\"|g" $PUBLIC_DIR/templates/**/*.ejs
 sed -i "s|content=\"/$1|content=\"|g" $PUBLIC_DIR/templates/*.ejs
 sed -i "s|content=\"/$1|content=\"|g" $PUBLIC_DIR/templates/**/*.ejs
-sed -i "s|$PUBLIC_DIR||" $PUBLIC_DIR/scripts/**/*
-header 'Done'
 
 TIMESTAMP=$(date +%s)
 
@@ -102,4 +102,5 @@ updateGit() {
 updateGit ./
 updateGit $PUBLIC_DIR
 
+header 'Done'
 exit 0
