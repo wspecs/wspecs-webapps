@@ -89,11 +89,13 @@ header 'Done'
 TIMESTAMP=$(date +%s)
 
 updateGit() {
-  cd $1
-  git add -A
-  git commit -am "auto update $TIMESTAMP"
-  git status
-  git push
+  if [ -d "$1/.git" ]; then
+    cd $1
+    git add -A
+    git commit -am "auto update $TIMESTAMP"
+    git status
+    git push
+  fi
 }
 
 updateGit ./
