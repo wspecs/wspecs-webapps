@@ -12,7 +12,7 @@ function getCategory(index) {
   }
 }
 
-const keys = [];
+let count = 0;
 for (let song of hymns) {
   song.azIndex = removeAccents(song.title[0].toUpperCase());
   song.category = getCategory(song.number);
