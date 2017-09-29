@@ -32,6 +32,9 @@
     "@types/password-hash": "^1.2.20",
     "@types/randomstring": "^1.1.6",
     "bible-passage-reference-parser": "^2.0.1",
-    "reflect-metadata": "^0.1.10"
+    "mongoose": "^4.11.13",
+    "reflect-metadata": "^0.1.10",
+    "scripty": "^1.7.2",
+    "typescript": "^2.5.3"
   }
 }
