@@ -99,6 +99,7 @@ TIMESTAMP=$(date +%s)
 updateGit() {
   if [ -d "$1/.git" ]; then
     cd $1
+    git pull
     git add -A
     git commit -am "auto update $TIMESTAMP"
     git status
