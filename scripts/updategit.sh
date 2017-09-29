@@ -32,7 +32,7 @@ partial_duplicate() {
 }
 
 mkdir -p $PUBLIC_DIR
-for name in config.json index.js tsconfig.json .gitignore
+for name in index.js tsconfig.json .gitignore
 do
   duplicate $name
 done
