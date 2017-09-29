@@ -101,7 +101,7 @@ updateGit() {
 
 updateGit ./
 cd $PUBLIC_DIR
-ws package describe --text "input"
+ws package describe --text ""
 updateGit $PUBLIC_DIR
 
 header 'Done'
