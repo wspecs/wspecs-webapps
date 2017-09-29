@@ -12,7 +12,7 @@ function getCategory(index) {
   }
 }
 
-const keys = [];
+let count = 0;
 for (let song of hymns) {
   song.azIndex = removeAccents(song.title.replace(/\W/g, '')[0].toUpperCase());
   song.category = getCategory(song.number);
@@ -20,12 +20,10 @@ for (let song of hymns) {
   for (const key of song.parts) {
     song.verses.push(song[key]);
   }
-  Hymn.update({number: song.number}, song, {upsert: true}, err => {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      console.log(`Upserted song ${song.number}`);
-    }
-  });
+  Hymn.update({number: song.number}, song, {upsert: true}).exec()
+    .then(() => {
+      console.log(`Upserted song ${song.number}`)
+      if (++count === hymns.length) process.exit();
+    })
+    .catch(err => console.log(err));
 }
