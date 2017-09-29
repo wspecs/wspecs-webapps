@@ -1,5 +1,5 @@
-const BookInfo= require('./../../dest/models/threeangels/book-info');
-const BookParagraph = require('./../../dest/models/threeangels/book-paragraph');
+const BookInfo= require('./../../dest/models/threeangels/book-info').BookInfo;
+const BookParagraph = require('./../../dest/models/threeangels/book-paragraph').BookParagraph;
 const args = require('./../../dest/lib/args');
 
 const fs = require('fs');
