@@ -12,7 +12,8 @@ const ERROR_MESSAGE = 'Oops, the page you\'re looking for is missing.';
 class KJVRoutes extends BasicRoutes {
 
   constructor() {
-    super('kjv');
+    const basePath = 'kjv';
+    super(basePath);
   }
 
   private getBookName(number) {
@@ -49,7 +50,7 @@ class KJVRoutes extends BasicRoutes {
           }),
           pageContent: 'results',
         }
-        res.cache('kjv/layout', page);
+        this.renderLayout(page, res.cache);
       });
   };
 
@@ -66,7 +67,7 @@ class KJVRoutes extends BasicRoutes {
         verses,
         book: this.getBookName(verses[0].book),
       }
-      res.cache('kjv/layout', page);
+      this.renderLayout(page, res.cache);
     })
   };
 
@@ -81,7 +82,7 @@ class KJVRoutes extends BasicRoutes {
         verses,
         book: this.getBookName(verses[0].book),
       }
-      res.cache('kjv/layout', page);
+      this.renderLayout(page, res.cache);
     })
   };
 
@@ -96,7 +97,7 @@ class KJVRoutes extends BasicRoutes {
       chapterCount: books.chapterCount[bookIndex - 1],
       pageContent: 'book',
     }
-    res.cache('kjv/layout', page);
+    this.renderLayout(page, res.cache);
   };
 
   homePage(req, res) {
@@ -104,7 +105,7 @@ class KJVRoutes extends BasicRoutes {
       pageContent: 'home',
       books: books.names.map(x => x[0]),
     }
-    res.cache('kjv/layout', page);
+    this.renderLayout(page, res.cache);
   };
 
   get() {
