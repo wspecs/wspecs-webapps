@@ -106,8 +106,9 @@ updateGit() {
 }
 
 updateGit ./
-cd $PUBLIC_DIR
 DOCS=$(cat docs/setup.md)
+echo $DOCS
+cd $PUBLIC_DIR
 ws package describe --text $DOCS
 updateGit $PUBLIC_DIR
 
