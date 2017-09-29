@@ -107,7 +107,8 @@ updateGit() {
 
 updateGit ./
 cd $PUBLIC_DIR
-ws package describe --text ""
+DOCS=$(cat docs/setup.md)
+ws package describe --text $DOCS
 updateGit $PUBLIC_DIR
 
 header 'Done'

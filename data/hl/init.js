@@ -21,6 +21,9 @@ for (let song of hymns) {
     song.verses.push(song[key]);
   }
   Hymn.update({number: song.number}, song, {upsert: true}).exec()
-    .then(() => console.log(`Upserted song ${song.number}`))
+    .then(() => {
+      console.log(`Upserted song ${song.number}`)
+      if (++count === hymns.length) process.exit();
+    })
     .catch(err => console.log(err));
 }
