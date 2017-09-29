@@ -11,6 +11,7 @@ if [ ! -d "typescript/routes/$1" ]; then
 fi
 
 PUBLIC_DIR="/var/www/PUBLIC/$1"
+LIB_DIR="/var/www/LIB/express-lib"
 
 header() {
   echo ''
@@ -66,6 +67,9 @@ cp -r typescript/lib $PUBLIC_DIR/typescript/lib
 cp -r typescript/web.ts $PUBLIC_DIR/typescript/
 mkdir -p $PUBLIC_DIR/scripts
 cp scripts/compile.sh $PUBLIC_DIR/scripts/compile.sh
+rm -rf $PUBLIC_DIR/typescript/lib
+mkdir -p $PUBLIC_DIR/typescript/lib
+cp -r $LIB_DIR/** $PUBLIC_DIR/typescript/lib
 
 header 'String replacements'
 for name in models lib; do
