@@ -1,6 +1,6 @@
-const BookInfo= require('./../../models/threeangels/book-info');
-const BookParagraph = require('./../../models/threeangels/book-paragraph');
-const args = require('./../../lib/args');
+const BookInfo= require('./../../dest/models/threeangels/book-info');
+const BookParagraph = require('./../../dest/models/threeangels/book-paragraph');
+const args = require('./../../dest/lib/args');
 
 const fs = require('fs');
 const json = JSON.parse(fs.readFileSync('data/threeangels/json/' + args.options.book + '.json'));

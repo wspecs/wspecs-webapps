@@ -80,6 +80,7 @@ sed -i "s|basePath = '$1'|basePath = ''|g" $PUBLIC_DIR/**/*.ts
 
 
 sed -i "s|data/$1|data|g" $PUBLIC_DIR/data/*.js
+sed -i "s|\../\..|../|g" $PUBLIC_DIR/data/*.js
 sed -i "s|<%- base %>$1|<%- base %>|g" $PUBLIC_DIR/templates/*.ejs
 sed -i "s|<%- base %>$1|<%- base %>|g" $PUBLIC_DIR/templates/**/*.ejs
 sed -i "s|src=\"$1|src=\"|g" $PUBLIC_DIR/templates/*.ejs
@@ -89,6 +90,7 @@ sed -i "s|href=\"$1|href=\"|g" $PUBLIC_DIR/templates/**/*.ejs
 sed -i "s|href=\"/$1|href=\"|g" $PUBLIC_DIR/templates/**/*.ejs
 sed -i "s|href=\"/$1|href=\"|g" $PUBLIC_DIR/templates/**/*.ejs
 sed -i "s|content=\"/$1|content=\"|g" $PUBLIC_DIR/templates/*.ejs
+sed -i "s|content=\"/$1|content=\"|g" $PUBLIC_DIR/templates/**/*.ejs
 sed -i "s|content=\"/$1|content=\"|g" $PUBLIC_DIR/templates/**/*.ejs
 
 TIMESTAMP=$(date +%s)

@@ -1,4 +1,4 @@
-const Hymn = require('./../../models/hl');
+const Hymn = require('./../../dest/models/hl').HL;
 
 let fs = require('fs');
 let hymns = JSON.parse(fs.readFileSync('data/hl/json/hymns.json'));
@@ -20,12 +20,7 @@ for (let song of hymns) {
   for (const key of song.parts) {
     song.verses.push(song[key]);
   }
-  Hymn.update({number: song.number}, song, {upsert: true}, err => {
-    if (err) {
-      console.log(err);
-    }
-    else {
-      console.log(`Upserted song ${song.number}`);
-    }
-  });
+  Hymn.update({number: song.number}, song, {upsert: true}).exec()
+    .then(() => console.log(`Upserted song ${song.number}`))
+    .catch(err => console.log(err));
 }
