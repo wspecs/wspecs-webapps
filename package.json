@@ -9,7 +9,8 @@
     "compile": "scripty",
     "updategit": "scripty",
     "dev": "npm run compile && node index.js --instance dev --nocache --debug",
-    "prod": "npm run compile && node index.js --instance prod",
+    "prod": "node index.js --instance prod",
+    "start": "npm run compile && node index.js --instance prod",
     "test": "run(){echo \"Error: no test specified\" && exit 1}"
   },
   "author": "Wendly Saintil",
