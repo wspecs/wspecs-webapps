@@ -19,7 +19,7 @@ def processHymnText(index, filename, from_encoding, to_encoding="utf-8"):
       if ("(ter)" in line):
         line = line.replace("(ter)", "")
         line = line + " (3x)"
-      output += line + "\n"
+      output += line.title() + "\n"
 
     with codecs.open(filename.replace("original", "generated"), "w") as outifle:
       outifle.write(output)
