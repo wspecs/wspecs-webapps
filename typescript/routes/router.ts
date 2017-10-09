@@ -20,8 +20,8 @@ export class BasicRoutes {
       this.errorMessage = errorMessage404;
       this.router = Router();
       this.router.use(RESOLVE);
-      this.router.use(CACHE);
       this.router.use(SERVE);
+      this.router.use(CACHE);
       this.router.use((req: AppRequest, res, next) => {
         if (this.basePath) {
           req.basePath = '/' + this.basePath;

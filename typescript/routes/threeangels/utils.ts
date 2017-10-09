@@ -1,14 +1,15 @@
 import {bcv_parser} from 'bible-passage-reference-parser/js/en_bcv_parser';
 
+function replaceSubstring(str: string, rep: string, start: number,
+  end: number) {
+  return str.substring(0, start) + rep + str.substring(end);
+}
 /**
  * @param {string} text Possible bible reference.
  * @param {string} osis Bible reference in osis format.
  * @return {string} html reference for th text specified.
  */
 function getReplacement(text: string, osis: string) {
-  if (text.trim().indexOf(' ') === -1) {
-    return text;
-  }
   const verses = osis.split('-');
   // Transform Exodus 34:6-Exodus 34:7 to Exodus 34:6-7
   if (verses.length > 1) {
@@ -42,7 +43,7 @@ function updateContent(content: string, original: string, context='') {
     }
   }
   else if (parts.length > 1) {
-    for (const part of parts){
+    for (const part of parts) {
       content = updateContent(content, part, parts[0]);
     }
   }
@@ -69,11 +70,13 @@ export function highlightReferences(content: string) {
   for (let index = parse.entities.length - 1; index >= 0; index--) {
     const entity = parse.entities[index];
     const indices: number[] = entity.absolute_indices;
-    const original = content.substring(indices[0], indices[1]);
+    const [start, end] = indices;
+    const original = content.substring(start, end);
     if (entity.type === 'b' || entity.type === 'bc') {
       continue;
     }
-    content = updateContent(content, original);
+    const replacement = updateContent(original, original);
+    content = replaceSubstring(content, replacement, start, end);
   }
   return content;
 }

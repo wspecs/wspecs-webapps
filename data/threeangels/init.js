@@ -5,6 +5,7 @@ const args = require('./../../dest/lib/args');
 const fs = require('fs');
 const json = JSON.parse(fs.readFileSync('data/threeangels/json/' + args.options.book + '.json'));
 
+let count = 0;
 BookInfo.update({code: json.info.code}, json.info, {upsert: true}, err => {
   if (err) {
     console.log(err);
@@ -16,6 +17,9 @@ BookInfo.update({code: json.info.code}, json.info, {upsert: true}, err => {
             console.log(err);
           } else {
             console.log(`Inserted ${par.code} paragraph ${par.k}`);
+          }
+          if (++count == json.paragraphs.length) {
+            process.exit(0);
           }
         })
       }

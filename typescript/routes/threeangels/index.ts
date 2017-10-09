@@ -100,7 +100,7 @@ class ThreeAngels extends BasicRoutes {
           }),
           pageContent: 'chapter',
         });
-      });
+      }).catch(e => res.send(e));
     });
   }
 
